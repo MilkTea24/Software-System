@@ -1,14 +1,14 @@
 import java.util.Timer;
 
-public class JavaDT {
+public class JavaDoorTimer {
 	private Timer timer;
 	private DoorTimerTask task;
 	
-	public JavaDT() {
+	public JavaDoorTimer() {
 		task = new DoorTimerTask() ;
 		timer = new Timer() ;
 	}
-	public void setDoorTimeout(EC doorTimeout) {
+	public void setDoorTimeout(ElevatorController doorTimeout) {
 		task.setDoorTimeout(doorTimeout);
 	}
 	public void start() {

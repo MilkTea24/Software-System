@@ -1,5 +1,5 @@
 public class BasicFloorDisplay extends AbstractFloorDisplay {
-	public BasicFloorDisplay(EC ctrl, IFloorDisplayImplementor imp) {
+	public BasicFloorDisplay(ElevatorController ctrl, IFloorDisplayImplementor imp) {
 		super(ctrl, imp);
 	}
 	

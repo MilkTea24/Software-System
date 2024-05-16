@@ -1,13 +1,13 @@
 import java.util.ArrayList;
 import java.util.List;
 
-class EC {
+class ElevatorController {
 	private int k; // 0: every floor stop, 1: demand only stop
 
-	private EM em;
-	private ED ed;
-	private List<FD> fds;
-	private JavaDT dt;
+	private ElevatorManager em;
+	private ElevatorDoor ed;
+	private List<FloorDoor> floorDoors;
+	private JavaDoorTimer dt;
 	
 	private List<Integer> floorstobeVisited = new ArrayList<>();
 	private int curFlr = 1;
@@ -17,13 +17,13 @@ class EC {
 	private ElevatorInsideDisplay elevatorInsideDisplay;
 	private AbstractFloorDisplay abstractFloorDisplay;
 	
-	public EC(int kind, EM elevatorMotor,
-			ED elevatorDoor, List<FD> floorDoors,
-			JavaDT doorTimer) {
+	public ElevatorController(int kind, ElevatorManager elevatorMotor,
+							  ElevatorDoor elevatorDoor, List<FloorDoor> floorDoors,
+							  JavaDoorTimer doorTimer) {
 		this.k = kind;
 		this.em = elevatorMotor;
 		this.ed = elevatorDoor;
-		this.fds = floorDoors;
+		this.floorDoors = floorDoors;
 		this.dt = doorTimer;
 		
 		if ( doorTimer != null )
@@ -37,7 +37,7 @@ class EC {
 		}
 		// open doors
 		ed.open() ;
-		fds.get(getCurFlr()).open() ;
+		floorDoors.get(getCurFlr()).open() ;
 		if ( dt != null ) dt.start() ;
 	}
 	public void goTo(int dst) {
@@ -74,7 +74,7 @@ class EC {
 			
 			// open doors
 			ed.open() ;
-			fds.get(getCurFlr()).open() ;
+			floorDoors.get(getCurFlr()).open() ;
 			if ( dt != null ) dt.start() ;
 			
 			floorstobeVisited.remove(flr) ;
@@ -91,7 +91,7 @@ class EC {
 		else nxtDir =  -1 ;
 		
 		ed.close() ;
-		fds.get(getCurFlr()).close() ;
+		floorDoors.get(getCurFlr()).close() ;
 		if ( dt != null ) dt.stop() ;
 		
 		if ( nxtDir != 0 ) {
@@ -105,7 +105,7 @@ class EC {
 		if ( getCurDir() == 0  ) {
 			// open doors
 			ed.open() ;
-			fds.get(getCurFlr()).open() ;
+			floorDoors.get(getCurFlr()).open() ;
 			if ( dt != null ) dt.start() ;
 		}
 	}
@@ -114,7 +114,7 @@ class EC {
 		if ( getCurDir() == 0 ) {
 			// closeDoor
 			ed.close() ;
-			fds.get(getCurFlr()).close() ;
+			floorDoors.get(getCurFlr()).close() ;
 			if ( dt != null ) dt.stop() ;
 		}
 	}
@@ -125,7 +125,7 @@ class EC {
 		// elevatorDoor, floorDoors should not be null
 		
 		DoorStatus elevatorDS = ed.getDoorStatus();
-		DoorStatus floorDS = fds.get(floor).getDoorStatus();
+		DoorStatus floorDS = floorDoors.get(floor).getDoorStatus();
 		
 		DoorStatus DS = DoorStatus.OPEN;
 		if ( elevatorDS == DoorStatus.CLOSED && floorDS == DoorStatus.CLOSED )

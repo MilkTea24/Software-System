@@ -1,9 +1,9 @@
 
 public class ControlRoomDisplay {
-	private EC ctrl ;
+	private ElevatorController ctrl ;
 
-	public ControlRoomDisplay(EC ec) {
-		this.ctrl = ec ;
+	public ControlRoomDisplay(ElevatorController elevatorController) {
+		this.ctrl = elevatorController;
 	}
 	public void update() {
 		int curFlr = ctrl.getCurFlr() ;

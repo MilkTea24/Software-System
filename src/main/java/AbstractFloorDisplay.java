@@ -1,9 +1,9 @@
 
 abstract class AbstractFloorDisplay {
-	protected EC ctrl ;
+	protected ElevatorController ctrl ;
 	private IFloorDisplayImplementor imp;
 	
-	public AbstractFloorDisplay(EC ctrl, IFloorDisplayImplementor imp) {
+	public AbstractFloorDisplay(ElevatorController ctrl, IFloorDisplayImplementor imp) {
 		this.ctrl = ctrl;
 		this.imp = imp;
 	}

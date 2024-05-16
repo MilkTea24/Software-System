@@ -1,12 +1,12 @@
 
-public class ED {
+public class ElevatorDoor {
 	private DeviceVendor vendor;
 
 	private String elevatorDoorStatusForLG ;
 	private char elevatorDoorStatusForSamsung ;
 	private int elevatorDoorOpenedForHyundai ;
 
-	public ED(DeviceVendor vendor) {
+	public ElevatorDoor(DeviceVendor vendor) {
 		this.vendor = vendor;
 		
 		switch ( vendor ) {
